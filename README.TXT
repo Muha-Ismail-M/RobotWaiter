@@ -1,73 +1,79 @@
-#Robot Waiter
+# Card Deck Simulator (SimpleCardDeck)
 
-Robot Waiter is a small **Java console practice project** that simulates a “robot waiter” taking a group’s order details (party size + drinks) and generating an **itemized restaurant bill**.
+CardDeckSimulator is a small **Java console app** (built as a **BlueJ project**) that demonstrates the core behavior of a “deck” using a simple **Last-In–First-Out** model: you can **put** a card onto the deck, **take** a card off the deck, and **print** the current contents.
 
-It’s designed to practice core programming fundamentals—user input, variables/constants, conditionals, and basic arithmetic—using a real-world scenario (restaurant checkout).
-
----
-
-## What it does
-
-The program walks the user through a simple checkout flow:
-
-- Prompts for:
-  - number of adults
-  - number of children under 12
-  - number of teenagers (ages 12–18)
-  - number of drinks
-- Calculates itemized subtotals:
-  - adults (fixed price)
-  - teenagers (fixed price)
-  - children under 12 (free)
-  - drinks (fixed price)
-- Applies an extra charge rule for large parties (automatic gratuity concept)
-- Adds tax
-- Optionally accepts a custom tip amount
-- Prints a final receipt-style summary
+It’s essentially a beginner-friendly practice project for working with:
+- arrays and fixed-size storage
+- user input via `Scanner`
+- loops and conditional logic
+- simple state management (tracking the current deck size)
 
 ---
 
-## Pricing rules (as implemented)
+## What this project does
 
-- Adults: **$30.00** each  
-- Teenagers (12–18): **$15.00** each  
-- Children under 12: **free**  
-- Drinks: **$2.99** each  
-- Tax rate: **13%**  
-- Automatic gratuity rule: **18%** (intended for groups of **20+ adults**)
+The program maintains an in-memory “deck” with a maximum capacity of **52 cards**. Cards are stored as plain text values (strings), so you can type any label you want (e.g., `AS`, `10H`, `Queen of Spades`, etc.).
 
----
+From the menu you can:
 
-## Project structure
-
-- `robotWaiter.java` — main program logic (prompts, calculations, receipt output)
-- `README.TXT` — placeholder README template (BlueJ-style)
-- `package.bluej` / `robotWaiter.ctxt` — BlueJ project metadata
-- `robotWaiter.class` — compiled output artifact
+- **Put (`p`)**: add a card to the top of the deck (if there is space)
+- **Take (`t`)**: remove the last card that was added and print it (if the deck is not empty)
+- **Print (`r`)**: display the current deck contents in order
+- **Quit (`q`)**: exit the program
 
 ---
 
-## How to run (intended environment)
+## How the “deck” is modeled
 
-This repository is structured as a **BlueJ** project, and the entry point is written in BlueJ style (a no-argument `main()` method). The easiest way to run it is to open the folder in BlueJ and run the `robotWaiter` class.
+- The deck is stored in a fixed `String[52]` array.
+- A `deckSize` counter tracks how many cards are currently in the deck.
+- Adding a card stores it at index `deckSize` then increments `deckSize`.
+- Taking a card removes the item at index `deckSize - 1` then decrements `deckSize`.
 
----
-
-## Notes / known limitations
-
-- **Tax vs. gratuity labeling:** the program uses a single variable for either “tax” or “automatic tip” depending on party size, and it prints it as “Tax” in the receipt output. In a production version, tax and gratuity would be calculated and displayed separately.
-- **Input validation:** inputs assume valid integers and do not guard against negative numbers or accidental non-numeric values.
-- **User input flexibility:** the “yes/no” tip prompt expects exact text and does not handle different casing (e.g., `Yes`, `YES`) or typos.
-- **Formatting:** totals are printed as raw doubles; a polished version would format currency consistently to two decimals.
+This makes the behavior consistent and predictable, and it mirrors how a **stack** data structure works.
 
 ---
 
-## Improvement ideas (if you want to level it up)
+## How to run it
 
-- Separate **tax** and **automatic gratuity** into two distinct calculations and receipt lines
-- Add robust input validation (no negatives, retry on invalid input)
-- Format money output with standard currency formatting (two decimal places)
-- Support percent-based tips (e.g., 10%, 15%, 20%) in addition to flat dollar tips
-- Convert the BlueJ-style entry point to a standard Java `main(String[] args)` for easier running outside BlueJ
+This repository includes BlueJ project files (`package.bluej`, `.ctxt`), and the main entry point is written in a BlueJ-friendly style.
+
+Typical usage:
+- Open the project folder in **BlueJ**
+- Run the `SimpleCardDeck` class
+- Follow the on-screen menu prompts to enter commands (`p`, `t`, `r`, `q`)
 
 ---
+
+## Included files
+
+- `SimpleCardDeck.java` — main program logic (menu + deck operations)
+- `README.TXT` — placeholder template file
+- `package.bluej` and `*.ctxt` — BlueJ project metadata
+- `SimpleCardDeck.class` — compiled output (generated artifact)
+
+---
+
+## Limitations (current behavior)
+
+- **No validation** of card input (the program accepts any text as a “card”).
+- The “deck” behaves like a **stack** (LIFO). It does not simulate realistic deck operations like shuffling, drawing from the top, dealing hands, or preventing duplicates.
+- The entry-point method is designed for BlueJ; running it in a standard Java environment may require adjusting the program entry method to the conventional Java signature.
+
+---
+
+## Roadmap ideas (easy upgrades)
+
+If you want to expand this into a more realistic deck simulator:
+
+- Add a real 52-card generator (suits + ranks)
+- Add `shuffle`, `draw`, `dealHand(n)`, and `resetDeck` actions
+- Validate inputs and prevent duplicates
+- Replace the raw array with a `List` or a dedicated `Deck` class (cleaner design)
+- Add unit tests for push/pop/empty/full edge cases
+
+---
+
+## License
+
+No license file is currently included. If you plan to share or accept contributions, add a standard license (MIT / Apache-2.0) to make usage terms explicit.
