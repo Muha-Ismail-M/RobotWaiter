@@ -71,3 +71,7 @@ This repository is structured as a **BlueJ** project, and the entry point is wri
 - Convert the BlueJ-style entry point to a standard Java `main(String[] args)` for easier running outside BlueJ
 
 ---
+
+## Author / context
+
+Created as a practice project (dated **2024-10-28** in the source header).
