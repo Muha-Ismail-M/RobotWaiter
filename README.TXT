@@ -1,4 +1,4 @@
-# Robot Waiter
+#Robot Waiter
 
 Robot Waiter is a small **Java console practice project** that simulates a “robot waiter” taking a group’s order details (party size + drinks) and generating an **itemized restaurant bill**.
 
