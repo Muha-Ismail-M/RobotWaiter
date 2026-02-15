@@ -72,6 +72,3 @@ This repository is structured as a **BlueJ** project, and the entry point is wri
 
 ---
 
-## Author / context
-
-Created as a practice project (dated **2024-10-28** in the source header).
